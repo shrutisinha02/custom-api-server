@@ -1,5 +1,3 @@
-Here's the formatted README.md for your project:
-
 ```markdown
 # Custom API Server – Keploy API Fellowship
 
