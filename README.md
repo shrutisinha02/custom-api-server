@@ -1,30 +1,33 @@
-```markdown
 # Custom API Server – Keploy API Fellowship
 
-A simple Express.js-based custom API server built as part of the Keploy API Fellowship by Shruti Sinha. It allows clients to perform CRUD (Create, Read, Update, Delete) operations on user data stored in MongoDB Atlas.
+A simple Express.js-based API server built by **Shruti Sinha** as part of the **Keploy API Fellowship**. It enables clients to perform CRUD (Create, Read, Update, Delete) operations on user data stored in **MongoDB Atlas**.
+
 
 ## About This Project
 
-- Built a Node.js API server with Express
-- Integrated with MongoDB Atlas using Mongoose
-- Exposed 4 API endpoints for managing users
-- Tested endpoints using Postman
-- Hosted on localhost for development
+- Built using **Node.js** and **Express.js**
+- Connected to **MongoDB Atlas** using **Mongoose**
+- Provides RESTful API endpoints for managing user records
+- Fully tested using **Jest** for unit, integration, and API-level validation
+- Achieved over **78% code coverage**
+- Runs locally for development and testing
+
 
 ## Tech Stack
 
-- Node.js
-- Express
-- MongoDB Atlas
-- Mongoose
-- Postman (for testing)
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB Atlas (cloud-based NoSQL)
+- **ODM:** Mongoose
+- **Testing:** Jest, Supertest
+- **Environment Management:** dotenv
+
 
 ## API Endpoints
 
 ### POST `/users`
 Creates a new user.
 
-**Request Body (JSON):**
+**Request Body:**
 ```json
 {
   "name": "Shruti",
@@ -36,10 +39,11 @@ Creates a new user.
 **Response:**
 ```json
 {
-    "name": "Shruti",
-    "quantity": 1,
-    "_id": "6855c983dbcfd7fa89a82eca",
-    "__v": 0
+  "_id": "65f5c983dbcfd7fa89a82eca",
+  "name": "Shruti",
+  "email": "22051282@kiit.ac.in",
+  "age": 20,
+  "__v": 0
 }
 ```
 
@@ -49,19 +53,20 @@ Retrieves all users stored in the database.
 **Response:**
 ```json
 [
-    {
-        "_id": "6855c983dbcfd7fa89a82eca",
-        "name": "Shruti",
-        "quantity": 1,
-        "__v": 0
-    }
+  {
+    "_id": "65f5c983dbcfd7fa89a82eca",
+    "name": "Shruti",
+    "email": "22051282@kiit.ac.in",
+    "age": 20,
+    "__v": 0
+  }
 ]
 ```
 
 ### PUT `/users/:id`
-Updates an existing user's information by ID.
+Updates a user's details by ID.
 
-**Request Body (JSON):**
+**Request Body:**
 ```json
 {
   "name": "Shruti Sinha",
@@ -73,15 +78,16 @@ Updates an existing user's information by ID.
 **Response:**
 ```json
 {
-    "_id": "6855c983dbcfd7fa89a82eca",
-    "name": "Shruti Sinha",
-    "quantity": 1,
-    "__v": 0
+  "_id": "65f5c983dbcfd7fa89a82eca",
+  "name": "Shruti Sinha",
+  "email": "sinha.shruti0211@gmail.com",
+  "age": 20,
+  "__v": 0
 }
 ```
 
 ### DELETE `/users/:id`
-Deletes a user based on their unique ID.
+Deletes a user by their ID.
 
 **Response:**
 ```json
@@ -90,36 +96,71 @@ Deletes a user based on their unique ID.
 }
 ```
 
-## How to Run the Project
+## How to Run Locally
 
-### Clone the repo
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/shrutisinha02/custom-api-server.git
 cd custom-api-server
 ```
 
-### Install dependencies
+### 2. Install Dependencies
 ```bash
 npm install
 ```
 
-### Create a .env file
+### 3. Set Up Environment Variables
+Create a `.env` file in the root folder with:
 ```
 MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority
+MONGO_URI_TEST=mongodb+srv://<username>:<password>@cluster0.mongodb.net/testDB?retryWrites=true&w=majority
 ```
 
-### Start the server
+### 4. Start the Server
 ```bash
 node index.js
 ```
-The server runs at http://localhost:5000
+Server runs at: [http://localhost:5000](http://localhost:5000)
 
-## Testing the API with Postman
+---
 
-1. Open the Postman Desktop App
-2. Use the following URLs:
-   - GET `http://localhost:5000/users`
-   - POST `http://localhost:5000/users` with raw JSON body
-   - PUT `http://localhost:5000/users/:id`
-   - DELETE `http://localhost:5000/users/:id`
+## Running Tests
+Run all unit, integration, and API tests using:
+```bash
+npm test
 ```
+
+### Tools Used:
+- **Jest** for test runner and coverage
+- **Supertest** for API testing
+
+### Code Coverage Screenshot:
+![Test Coverage](./assets/test_coverage.png)
+
+---
+
+## API Testing with Postman
+
+| Method | Endpoint     | Description       |
+| ------ | ------------ | ----------------- |
+| GET    | `/users`     | Fetch all users   |
+| POST   | `/users`     | Create new user   |
+| PUT    | `/users/:id` | Update user by ID |
+| DELETE | `/users/:id` | Delete user by ID |
+
+---
+
+## Folder Structure
+```
+custom-api-server/
+├── models/              
+├── tests/               
+│   ├── unit/
+│   ├── api/
+│   └── integration/
+├── .env
+├── index.js             
+├── package.json
+├── assets/
+│   └── test_coverage.png
+└── README.md
